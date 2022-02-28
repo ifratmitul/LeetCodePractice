@@ -1,5 +1,5 @@
-﻿﻿
+﻿
 var call = new BasicProblems();
-int[] arr = { 1, 2, 2, 3, 3 };
-Console.WriteLine(call.RemoveDuplicates(arr));
+int[] arr = { -2,1,-3,4,-1,2,1,-5,4};
+Console.WriteLine(call.MaxSubArray(arr));
 
