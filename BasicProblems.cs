@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Net.Mail;
 namespace LeetCode;
 public class BasicProblems
 {
@@ -112,7 +114,99 @@ public class BasicProblems
 
     public bool isGood()
     {
+        //for dummy use
         return true;
     }
 
+    public int[] findUniqueValues(int[] nums1, int[] nums2)
+    {
+        IList<int> data = new List<int>();
+        Array.Sort(nums2);
+
+        foreach (var item in nums1)
+        {
+
+            //Console.WriteLine(item + " ==> " + recursiveBinarySearch(nums2, 0, nums2.Length, item));
+            if (recursiveBinarySearch(nums2, 0, nums2.Length, item))
+            {
+                data.Add(item);
+            }
+
+        }
+        string s = JsonSerializer.Serialize(data);
+        Console.WriteLine(s);
+
+
+        return data.Distinct().ToArray();
+    }
+
+    public static bool recursiveBinarySearch(int[] arr, int start, int end, int n)
+    {
+        Array.Sort(arr);
+        if (start >= end) return false;
+        int mid = (start + end) / 2;
+        if (arr[mid] == n) return true;
+        else if (arr[mid] < n)
+        {
+            return recursiveBinarySearch(arr, mid + 1, end, n);
+        }
+        else
+        {
+            return recursiveBinarySearch(arr, start, mid, n);
+        }
+    }
+
+    public int[] twoSum(int[] nums, int target)
+    {
+        int i = 0;
+        Dictionary<int, int> res = new Dictionary<int, int>();
+
+        while (i < nums.Length)
+        {
+            int sum = target - nums[i];
+            if (res.ContainsKey(sum))
+            {
+                return new int[] { i, res[sum] };
+            }
+
+            if (!res.ContainsKey(nums[i])) res.Add(nums[i], i);
+
+            i++;
+        }
+        return new int[] { 0, 0 };
+    }
+
+    public IList<IList<int>> ThreeSum(int[] nums)
+    {
+        IList<IList<int>> res = new List<IList<int>>();
+        Array.Sort(nums);
+        int k = nums.Length - 1;
+        int i = 0, j = 1;
+
+        while (i < nums.Length)
+        {
+            while (k > j)
+            {
+
+                int sum = nums[i] + nums[j] + nums[k];
+                if (sum == 0)
+                {
+
+                }
+                else if (sum > 0)
+                {
+                    k--;
+                }
+                else
+                {
+                    j++;
+                }
+
+            }
+            i++;
+        }
+
+        return res;
+
+    }
 }
