@@ -180,30 +180,39 @@ public class BasicProblems
     {
         IList<IList<int>> res = new List<IList<int>>();
         Array.Sort(nums);
-        int k = nums.Length - 1;
-        int i = 0, j = 1;
 
-        while (i < nums.Length)
+        for (int i = 0; i + 2 < nums.Length; i++)
         {
-            while (k > j)
+            if (i > 0 && nums[i] == nums[i - 1])
             {
+                continue;
+            }
 
+            int j = i + 1;
+            int k = nums.Length - 1;
+
+            while (j < k)
+            {
                 int sum = nums[i] + nums[j] + nums[k];
+
                 if (sum == 0)
                 {
+                    res.Add(new List<int> { nums[i], nums[j], nums[k] });
+                    k--;
 
+                    while (j < k && nums[k] == nums[k + 1]) k--;
                 }
                 else if (sum > 0)
                 {
                     k--;
+
                 }
                 else
                 {
                     j++;
                 }
-
             }
-            i++;
+
         }
 
         return res;
