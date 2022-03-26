@@ -262,4 +262,38 @@ public class BasicProblems
 
         return digits;
     }
+    
+    public int[] Intersect(int[] nums1, int[] nums2) {
+        Array.Sort(nums1);
+        Array.Sort(nums2);
+        List<int> res = new List<int>();
+        IDictionary<int, int> map = new Dictionary<int, int>();
+        
+        
+        foreach (var item in nums1)
+        {
+            map.TryGetValue(item, out int freq);
+            if (freq > 0)
+            {
+                map[item]++;
+            }
+            else
+            {
+                map.Add(item, 1);
+                
+            }
+        }
+
+        foreach (var item in nums2)
+        {
+            map.TryGetValue(item, out int freq);
+            if (freq > 0)
+            {
+                res.Add(item);
+            }
+        }
+        
+        return res.ToArray();
+    }
+
 }
