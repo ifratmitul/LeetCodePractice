@@ -3,6 +3,14 @@ using System.Net.Mail;
 namespace LeetCode;
 public class BasicProblems
 {
+    private readonly SearchAlgo? _searchAlgo;
+
+    public BasicProblems(SearchAlgo searchAlgo)
+    {
+        _searchAlgo = searchAlgo;
+    }
+
+
     public int RemoveDuplicates(int[] num)
     {
         int i, j = 0;
@@ -217,5 +225,41 @@ public class BasicProblems
 
         return res;
 
+    }
+
+
+    public int[] PlusOne(int[] digits)
+    {
+
+        int n = digits.Length;
+        int[] res = new int[n + 1];
+        int carry = 0;
+        digits[n - 1]++;
+
+        for (int i = n - 1; i >= 0; i--)
+        {
+            digits[i] += carry;
+            carry = 0;
+
+
+            if (digits[i] > 9)
+            {
+                digits[i] = 0;
+                carry = 1;
+            }
+
+            res[i + 1] = digits[i];
+
+        }
+
+        if (carry > 0)
+        {
+            res[0] = carry;
+            return res;
+        }
+
+
+
+        return digits;
     }
 }
