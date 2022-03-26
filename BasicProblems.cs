@@ -262,4 +262,38 @@ public class BasicProblems
 
         return digits;
     }
+    
+    public int[] Intersect(int[] nums1, int[] nums2) {
+        
+        Array.Sort(nums1);
+        Array.Sort(nums2);
+        
+        List<int> res = new List<int>();
+
+        if (nums1.Length > nums2.Length)
+        {
+            foreach (var i in nums2)
+            {
+                if (_searchAlgo?.RecursiveBinarySearch(nums1, i) != -1)
+                {
+                    res.Add(i);
+                }
+            }
+        }
+        else
+        {
+            foreach (var i in nums1)
+            {
+                if (_searchAlgo?.RecursiveBinarySearch(nums2, i) != -1)
+                {
+                    if(!res.Contains(i))res.Add(i);
+                }
+            }
+            
+        }
+
+
+        return res.ToArray();
+    }
+    
 }
