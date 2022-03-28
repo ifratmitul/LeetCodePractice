@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Net.Mail;
 namespace LeetCode;
 public class BasicProblems
 {
@@ -295,5 +293,41 @@ public class BasicProblems
         
         return res.ToArray();
     }
+    
+    public bool IsPerfectSquare(int num)
+    {
+        if (num == 1) return true;
+        Int64 start = 0;
+        Int64 end = num;
+
+        while (start <= end)
+        {
+            Int64 mid = (start + end) / 2;
+            if (mid * mid == num) return true;
+
+            else if (mid * mid > num)
+            {
+                end = mid - 1;
+            }
+            else
+            {
+                start = mid + 1;
+            }
+        }
+
+        return false;
+    }
+    
+    public char NextGreatestLetter(char[] letters, char target)
+    {
+        sortCharArray(letters);
+        return 'a';
+    }
+
+    private void sortCharArray(char[] arr)
+    {
+        Array.Sort(arr);
+    }
+    
 
 }
