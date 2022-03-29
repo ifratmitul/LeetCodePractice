@@ -320,14 +320,25 @@ public class BasicProblems
     
     public char NextGreatestLetter(char[] letters, char target)
     {
-        sortCharArray(letters);
-        return 'a';
-    }
+        int start = 0;
+        int end = letters.Length - 1;
+        while (start <= end)
+        {
 
-    private void sortCharArray(char[] arr)
-    {
-        Array.Sort(arr);
+            int mid = start + (end - start) / 2;
+
+            if (target <letters[mid])
+            {
+                end = mid - 1;
+            }
+            else
+            {
+                start = mid + 1;
+            }
+        }
+        return letters[start % letters.Length];
     }
+    
     
 
 }
