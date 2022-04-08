@@ -386,6 +386,36 @@ public class BasicProblems
         return rev;
     }
     
-    
+    public int LastStoneWeight(int[] stones)
+    {
+        PriorityQueue<int, int> queue = new PriorityQueue<int, int>(stones.Select(s=>(s,s)), new Comparer());
 
+        while (queue.Count >= 2)
+        {
+            var y = queue.Dequeue();
+            var x = queue.Dequeue();
+            if (x != y)
+            {
+                queue.Enqueue(y-x, y-x);
+                
+            }
+        }
+
+        if (queue.Count == 1) return queue.Dequeue();
+     
+        
+
+        return 0;
+
+    }
+    public class Comparer: IComparer<int>
+    {
+        public int Compare(int x, int y)
+        {
+            if (x < y) return 1;
+            else if (x == y) return 0;
+            else return -1;
+        }
+    }
+    
 }
