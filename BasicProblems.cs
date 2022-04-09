@@ -338,7 +338,84 @@ public class BasicProblems
         }
         return letters[start % letters.Length];
     }
-    
-    
 
+    public Boolean isPalindrom(int x)
+    {
+        int reverse = 0;
+        int n = x;
+        while (n != 0)
+        {
+            int lastDigit = n % 10;
+            reverse = (reverse * 10) + lastDigit;
+            n = n / 10;
+        }
+
+        if (x == reverse) return true;
+        return false;
+    }
+    
+    public void ReverseString(char[] s)
+    {
+
+        int i = 0;
+        int j = s.Length - 1;
+        while (i <= j)
+        {
+            (s[i], s[j]) = (s[j], s[i]);
+            i++;
+            j--;
+        }
+        
+
+    }
+    
+    public int Reverse(int x)
+    {
+        Int32 rev = 0;
+        Int32 n = x;
+        while (n != 0)
+        {
+            int lastDigit = n % 10;
+            n = n / 10;
+            if (rev > Int32.MaxValue/10 || (rev == Int32.MaxValue / 10 && lastDigit > 7)) return 0;
+            if (rev < Int32.MinValue/10 || (rev == Int32.MinValue/ 10 && lastDigit < -8)) return 0;
+            rev = (rev * 10) + lastDigit;
+
+        }
+        
+        return rev;
+    }
+    
+    public int LastStoneWeight(int[] stones)
+    {
+        PriorityQueue<int, int> queue = new PriorityQueue<int, int>(stones.Select(s=>(s,s)), new Comparer());
+
+        while (queue.Count >= 2)
+        {
+            var y = queue.Dequeue();
+            var x = queue.Dequeue();
+            if (x != y)
+            {
+                queue.Enqueue(y-x, y-x);
+                
+            }
+        }
+
+        if (queue.Count == 1) return queue.Dequeue();
+     
+        
+
+        return 0;
+
+    }
+    public class Comparer: IComparer<int>
+    {
+        public int Compare(int x, int y)
+        {
+            if (x < y) return 1;
+            else if (x == y) return 0;
+            else return -1;
+        }
+    }
+    
 }
