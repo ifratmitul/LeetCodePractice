@@ -7,7 +7,7 @@ public class DoublyLinkedList
 
     public void AddtoFront(int n)
     {
-        DoublyLinkedListNode newNode = new DoublyLinkedListNode(n);
+        DoublyLinkedListNode? newNode = new DoublyLinkedListNode(n);
 
         if (head == null)
         {
@@ -23,7 +23,7 @@ public class DoublyLinkedList
 
     public void AddtoTail(int n)
     {
-        DoublyLinkedListNode newNode = new DoublyLinkedListNode(n);
+        DoublyLinkedListNode? newNode = new DoublyLinkedListNode(n);
         if (tail == null)
         {
             head = newNode;
@@ -37,7 +37,7 @@ public class DoublyLinkedList
         tail = newNode;
     }
 
-    public DoublyLinkedListNode removeFromFront()
+    public DoublyLinkedListNode? removeFromFront()
     {
         if (head == null) return null;
         
