@@ -34,4 +34,46 @@ public class LinkedList
         }
         Console.WriteLine("Finished");
     }
+
+    public void deleteNode(int n)
+    {
+        LinkedListNode? current = head;
+        LinkedListNode? prev = null;
+        if (current != null & current.value == n)
+        {
+            head = current.next;
+            return;
+        }
+
+        while (current != null && current.value != n)
+        {
+            prev = current;
+            current = current.next;
+        }
+
+        if (current == null)
+        {
+            return;
+        }
+
+        head.next = current.next;
+    }
+
+    public bool HasCycle()
+    {
+
+        LinkedListNode? fast = head;
+        LinkedListNode? slow = head;
+        while (fast != null && fast.next  != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast) return true;
+        }
+
+        return false;
+
+    }
+
+
 }
