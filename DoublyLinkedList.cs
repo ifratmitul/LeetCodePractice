@@ -2,12 +2,12 @@ namespace LeetCode;
 
 public class DoublyLinkedList
 {
-    public DoublyLinkedListNode head;
-    public DoublyLinkedListNode tail;
+    public DoublyLinkedListNode? head;
+    public DoublyLinkedListNode? tail;
 
     public void AddtoFront(int n)
     {
-        DoublyLinkedListNode newNode = new DoublyLinkedListNode(n);
+        DoublyLinkedListNode? newNode = new DoublyLinkedListNode(n);
 
         if (head == null)
         {
@@ -23,7 +23,7 @@ public class DoublyLinkedList
 
     public void AddtoTail(int n)
     {
-        DoublyLinkedListNode newNode = new DoublyLinkedListNode(n);
+        DoublyLinkedListNode? newNode = new DoublyLinkedListNode(n);
         if (tail == null)
         {
             head = newNode;
@@ -37,7 +37,7 @@ public class DoublyLinkedList
         tail = newNode;
     }
 
-    public DoublyLinkedListNode removeFromFront()
+    public DoublyLinkedListNode? removeFromFront()
     {
         if (head == null) return null;
         
@@ -61,7 +61,7 @@ public class DoublyLinkedList
 
     public void removeSpecificNode(int n)
     {
-        DoublyLinkedListNode current = head;
+        DoublyLinkedListNode? current = head;
         while (current != null)
         {
             if (current.val == n)
@@ -90,7 +90,7 @@ public class DoublyLinkedList
 
     public void PrintList()
     {
-        DoublyLinkedListNode current = head;
+        DoublyLinkedListNode? current = head;
         Console.WriteLine("Head => ");
         while (current != null)
         {
@@ -101,7 +101,7 @@ public class DoublyLinkedList
 
     public void printReverse()
     {
-        DoublyLinkedListNode current = tail;
+        DoublyLinkedListNode? current = tail;
         Console.WriteLine("Tail => ");
         while (current != null)
         {
