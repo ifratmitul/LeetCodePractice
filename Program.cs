@@ -30,3 +30,9 @@ call.LastStoneWeight(arr2);
 
 call.CalPoints(strArr);
 
+var easy = new LeetCodePractice.LeetEasy();
+// int [,] grid = new int[,] {{1,2,3}, {4,5,6}, {7,8,9}};
+// easy.ShiftGrid(grid, 1);
+
+easy.SpiralMatrix(3);
+
