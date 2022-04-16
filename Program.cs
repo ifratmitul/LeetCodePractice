@@ -1,5 +1,4 @@
-﻿
-var call = new BasicProblems(new SearchAlgo());
+﻿var call = new BasicProblems(new SearchAlgo());
 int[] arr = { 4,9,5 };
 int[] arr2 = { 2,7,4,1,8,1 };
 char[] Arr3 = {'k', 'f', 'j','m', 'a'};
@@ -12,8 +11,8 @@ call.IsPerfectSquare(16);
 call.IsPerfectSquare(14);
 Console.WriteLine(s);*/
 
-call.NextGreatestLetter(Arr3, 'c');
-call.LastStoneWeight(arr2);
+// call.NextGreatestLetter(Arr3, 'c');
+// call.LastStoneWeight(arr2);
 
 // DoublyLinkedList linkedList = new DoublyLinkedList();
 // linkedList.AddtoFront(5);
@@ -28,11 +27,13 @@ call.LastStoneWeight(arr2);
 // linkedList.PrintList();
 
 
-call.CalPoints(strArr);
+// call.CalPoints(strArr);
 
 var easy = new LeetCodePractice.LeetEasy();
 // int [,] grid = new int[,] {{1,2,3}, {4,5,6}, {7,8,9}};
 // easy.ShiftGrid(grid, 1);
 
-easy.SpiralMatrix(3);
+// easy.SpiralMatrix(3);
 
+// var file = new FileReader();
+// file.readFile();
