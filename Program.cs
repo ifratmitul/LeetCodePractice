@@ -6,14 +6,14 @@ char[] Arr3 = { 'k', 'f', 'j', 'm', 'a' };
 string[] strArr = { "5", "-2", "4", "C", "D", "9", "+", "+" };
 // call.isBadVersion(5);
 
-LinkStack stack = new LinkStack();
+//LinkStack stack = new LinkStack();
 //Console.WriteLine(stack.peek());
-stack.push(5);
-stack.push(15);
-stack.push(25);
-stack.push(65);
-stack.push(50);
-stack.push(1);
+// stack.push(5);
+// stack.push(15);
+// stack.push(25);
+// stack.push(65);
+// stack.push(50);
+// stack.push(1);
 
 
 //stack.pop();
@@ -42,10 +42,10 @@ Console.WriteLine(s);*/
 
 // call.CalPoints(strArr);
 
-LeetEasy easy = new LeetEasy();
+//LeetEasy easy = new LeetEasy();
 // Console.WriteLine(easy.BackspaceCompare("ab#c", "ad#c"));
-var str = JsonSerializer.Serialize(easy.SortArrayByParity(arr2));
-Console.WriteLine(str);
+//var str = JsonSerializer.Serialize(easy.SortArrayByParity(arr2));
+//Console.WriteLine(str);
 
 // easy.IsAnagram("heloo", "hola");
 // int [,] grid = new int[,] {{1,2,3}, {4,5,6}, {7,8,9}};
@@ -55,3 +55,6 @@ Console.WriteLine(str);
 
 // var file = new FileReader();
 // file.readFile();
+
+var chef = new CodeChef();
+chef.sixFriends();
