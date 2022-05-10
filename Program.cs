@@ -57,4 +57,5 @@ Console.WriteLine(s);*/
 // file.readFile();
 
 var chef = new CodeChef();
-chef.sixFriends();
+// chef.sixFriends();
+chef.oddEvenFibonacci();
