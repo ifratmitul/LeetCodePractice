@@ -1,4 +1,3 @@
-using System.Collections;
 namespace LeetCodePractice;
 public class LeetMedium
 {
@@ -25,6 +24,110 @@ public class LeetMedium
           if (root.right != null) KthSmallest(root.right, k);
 
           return res[k <= 0 ? k : k - 1];
+
+     }
+
+     public int[] TopKFrequent(int[] nums, int k)
+     {
+
+          if (nums.Length <= 1) return nums;
+
+          Dictionary<int, int> myMap = new Dictionary<int, int>();
+          int[] arr = new int[k];
+
+          for (int i = 0; i < nums.Length; i++)
+          {
+               int count;
+               if (myMap.TryGetValue(nums[i], out count))
+               {
+                    myMap[nums[i]] = ++count;
+               }
+               else
+               {
+                    myMap[nums[i]] = 1;
+               }
+
+          }
+          int l = 0;
+
+          foreach (KeyValuePair<int, int> item in myMap.OrderByDescending(key => key.Value))
+          {
+               if (l >= k) break;
+               arr[l] = item.Key;
+               ++l;
+          }
+
+          return arr;
+     }
+     public IList<IList<string>> GroupAnagram(string[] strs)
+     {
+
+          IList<IList<string>> res = new List<IList<string>>();
+          Dictionary<string, List<string>> dict = new Dictionary<string, List<string>>();
+
+          foreach (string s in strs)
+          {
+               Console.WriteLine("Array Str => " + s);
+               var sortedStr = String.Concat(s.OrderBy(c => c));
+               Console.WriteLine(sortedStr);
+               if (dict.ContainsKey(sortedStr)) dict[sortedStr].Add(s);
+               else dict.Add(sortedStr, new List<string>() { s });
+          }
+
+          foreach (var item in dict)
+          {
+               res.Add(item.Value);
+          }
+
+          return res;
+     }
+
+     public int[] ProductExceptSelf(int[] nums)
+     {
+          int[] arr = new int[nums.Length];
+          int p = 1;
+          arr[0] = p;
+          for (int i = 0; i < nums.Length - 1; i++)
+          {
+               p *= nums[i];
+               arr[i + 1] = p;
+
+          }
+          p = 1;
+          for (int i = nums.Length - 1; i >= 0; i--)
+          {
+               arr[i] *= p;
+               p *= nums[i];
+          }
+          return arr;
+     }
+     /*
+
+           [["8","3",".",".","7",".",".",".","."]
+          ,["6",".",".","1","9","5",".",".","."]
+          ,[".","9","8",".",".",".",".","6","."]
+          ,["8",".",".",".","6",".",".",".","3"]
+          ,["4",".",".","8",".","3",".",".","1"]
+          ,["7",".",".",".","2",".",".",".","6"]
+          ,[".","6",".",".",".",".","2","8","."]
+          ,[".",".",".","4","1","9",".",".","5"]
+          ,[".",".",".",".","8",".",".","7","9"]]
+
+     */
+     public bool IsValidSudoku(char[][] board)
+     {
+          bool col = false, row = false, grid = false;
+
+          for (int r = 0; r < board.Length; r++)
+          {
+               for (int c = 0; c < board[r].Length; c++)
+               {
+                    Console.WriteLine("Row {0}", board[r][c]);
+               }
+          }
+
+
+          return col && row && grid;
 
      }
 

@@ -31,9 +31,10 @@ public class CodeChef
     public void oddEvenFibonacci()
     {
         int t = Int32.Parse(Console.ReadLine());
-        int a = 0, b = 1;
+       
         for (int i = 0; i < t; i++)
         {
+             int a = 0, b = 1;
             string[] arr = Console.ReadLine().Split(' ');
             int n = Int32.Parse(arr[0]);
             int m = Int32.Parse(arr[1]);
@@ -44,14 +45,16 @@ public class CodeChef
             {
                 if (a >= n)
                 {
-                    if (a == 0) even++;
-                    else if (a % 2 == 0) even++;
-                    else odd++;
+                    //Console.WriteLine("Fibo => " + a);
+                    if (a == 0) ++even;
+                    else if (a % 2 == 0) ++even;
+                    else ++odd;
                 }
                 int c = a + b;
                 a = b;
                 b = c;
             }
+            Console.WriteLine("Case " + (i+1) + ":");
             Console.WriteLine("Odd " + odd);
             Console.WriteLine("Even " + even);
 
