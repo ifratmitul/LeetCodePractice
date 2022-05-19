@@ -1,5 +1,5 @@
 ﻿// var call = new BasicProblems(new SearchAlgo());
-int[] arr = { 4, 9, 5 };
+int[] arr = { 0,0 };
 int[] arr2 = { 2, 7, 4, 1, 8, 1 };
 char[] Arr3 = { 'k', 'f', 'j', 'm', 'a' };
 
@@ -56,6 +56,11 @@ Console.WriteLine(s);*/
 // var file = new FileReader();
 // file.readFile();
 
-var chef = new CodeChef();
+//var chef = new CodeChef();
 // chef.sixFriends();
-chef.oddEvenFibonacci();
+//chef.oddEvenFibonacci();
+//chef.oddEvenFibonacci();
+
+LeetMedium lm = new LeetMedium();
+// lm.TopKFrequent(arr, 2);
+lm.ProductExceptSelf(arr);
