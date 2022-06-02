@@ -77,7 +77,57 @@ public class LeetMedium
         return res;
     }
 
+     public IList<IList<string>> GroupAnagram(string[] strs)
+     {
 
+          IList<IList<string>> res = new List<IList<string>>();
+          Dictionary<string, List<string>> dict = new Dictionary<string, List<string>>();
+
+          foreach (string s in strs)
+          {
+               Console.WriteLine("Array Str => " + s);
+               var sortedStr = String.Concat(s.OrderBy(c => c));
+               Console.WriteLine(sortedStr);
+               if (dict.ContainsKey(sortedStr)) dict[sortedStr].Add(s);
+               else dict.Add(sortedStr, new List<string>() { s });
+          }
+
+          foreach (var item in dict)
+          {
+               res.Add(item.Value);
+          }
+
+          return res;
+     }
+     /*
+
+           [["8","3",".",".","7",".",".",".","."]
+          ,["6",".",".","1","9","5",".",".","."]
+          ,[".","9","8",".",".",".",".","6","."]
+          ,["8",".",".",".","6",".",".",".","3"]
+          ,["4",".",".","8",".","3",".",".","1"]
+          ,["7",".",".",".","2",".",".",".","6"]
+          ,[".","6",".",".",".",".","2","8","."]
+          ,[".",".",".","4","1","9",".",".","5"]
+          ,[".",".",".",".","8",".",".","7","9"]]
+
+     */
+     public bool IsValidSudoku(char[][] board)
+     {
+          bool col = false, row = false, grid = false;
+
+          for (int r = 0; r < board.Length; r++)
+          {
+               for (int c = 0; c < board[r].Length; c++)
+               {
+                    Console.WriteLine("Row {0}", board[r][c]);
+               }
+          }
+
+
+          return col && row && grid;
+
+     }
 
 }
 

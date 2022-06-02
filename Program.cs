@@ -1,5 +1,5 @@
 ﻿// var call = new BasicProblems(new SearchAlgo());
-int[] arr = { 0,0 };
+int[] arr = { 1,2,3,4 };
 int[] arr2 = { 2, 7, 4, 1, 8, 1 };
 char[] Arr3 = { 'k', 'f', 'j', 'm', 'a' };
 
