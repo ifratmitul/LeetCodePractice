@@ -216,4 +216,26 @@ public class LeetEasy
 
     }
 
+
+     public int[][] Transpose(int[][] matrix) {
+         int row = matrix.Length;
+         int col = matrix[0].Length;
+         int[][] transpose = new int[col][];
+
+         //initialize array
+         for(int i =0 ; i < col; i++) 
+         {
+             transpose[i] = new int[row];
+         }
+
+         for(int r = 0; r < matrix.Length; r++) {
+             for(int c = 0; c< matrix[r].Length; c++ )
+             {
+                 transpose[c][r] = matrix[r][c];
+             }
+         }
+
+        return transpose;
+     }
+
 }
