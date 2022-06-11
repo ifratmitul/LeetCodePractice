@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using System.Text;
 
 namespace LeetCodePractice;
@@ -195,15 +196,15 @@ public class LeetEasy
 
             if (nums[i] == 0)
             {
-               even.Add(0);
+                even.Add(0);
             }
             else if (nums[i] % 2 == 0)
             {
-               even.Add(nums[i]);
+                even.Add(nums[i]);
             }
             else
             {
-               odd.Add(nums[i]);
+                odd.Add(nums[i]);
             }
 
 
@@ -217,25 +218,131 @@ public class LeetEasy
     }
 
 
-     public int[][] Transpose(int[][] matrix) {
-         int row = matrix.Length;
-         int col = matrix[0].Length;
-         int[][] transpose = new int[col][];
+    public int[][] Transpose(int[][] matrix)
+    {
+        int row = matrix.Length;
+        int col = matrix[0].Length;
+        int[][] transpose = new int[col][];
 
-         //initialize array
-         for(int i =0 ; i < col; i++) 
-         {
-             transpose[i] = new int[row];
-         }
+        //initialize array
+        for (int i = 0; i < col; i++)
+        {
+            transpose[i] = new int[row];
+        }
 
-         for(int r = 0; r < matrix.Length; r++) {
-             for(int c = 0; c< matrix[r].Length; c++ )
-             {
-                 transpose[c][r] = matrix[r][c];
-             }
-         }
+        for (int r = 0; r < matrix.Length; r++)
+        {
+            for (int c = 0; c < matrix[r].Length; c++)
+            {
+                transpose[c][r] = matrix[r][c];
+            }
+        }
 
         return transpose;
-     }
+    }
+
+    public void Merge(int[] nums1, int m, int[] nums2, int n)
+    {
+        int size = m + n;
+        // int[] res = new int[size];
+        // nums1 = nums1.Where(item => item > 0).ToArray();
+        // nums2 = nums2.Where(item => item > 0).ToArray();
+
+        foreach (var item in nums2)
+        {
+            int index = Array.IndexOf(nums1, 0);
+            Console.WriteLine("Index => {0}", index);
+
+            if (index > -1)
+            {
+                nums1[index] = item;
+            }
+        }
+        Array.Sort(nums1);
+
+        Console.WriteLine(JsonSerializer.Serialize(nums1));
+        // Console.WriteLine(JsonSerializer.Serialize(nums2));
+
+
+    }
+
+    public bool IsValidSudoku(char[][] board)
+    {
+        bool col = false, row = false, grid = false;
+
+        //row iteration
+        for (int r = 0; r < board.Length; r++)
+        {
+            Console.Write("Row => ");
+            board[r] = board[r].Where(item => !item.Equals(".")).ToArray();
+            Console.WriteLine(JsonSerializer.Serialize(board[r]));
+        }
+        //column iteration
+
+
+
+        return col && row && grid;
+    }
+
+    public int RemovePalindromeSub(string s)
+    {
+        char[] arr = s.ToCharArray();
+        Array.Reverse(arr);
+        string newString = string.Join("", arr);
+        if (s.Equals(newString))
+        {
+            return 1;
+        }
+        return 2;
+    }
+
+    public bool IsPalindrome(string s)
+    {
+        List<string> str = new();
+
+        for (int i = 0; i < s.Length; i++)
+        {
+            if (new Regex(@"^[a-zA-Z]+$").IsMatch(s[i].ToString()))
+            {
+                System.Console.WriteLine(s[i]);
+                str.Add(s[i].ToString());
+            }
+
+        }
+
+        string s1 = string.Join("", str).ToLower();
+        str.Reverse();
+        string s2 = string.Join("", str).ToLower();
+        if (s1.Equals(s2)) return true;
+
+
+        return false;
+    }
+
+    public bool IsValid(string s)
+    {
+        Stack<char> st = new Stack<char>();
+
+        foreach (char item in s)
+        {
+            st.Push(item);
+        }
+
+        if (st.Count <= 1) return false;
+        Boolean res = false;
+        while (st.Count >= 2)
+        {
+            res = isPair(st.Pop(), st.Pop());
+        }
+
+        return isPair(st.Pop(), st.Peek());
+
+    }
+
+    private static bool isPair(char right, char left)
+    {
+        System.Console.WriteLine(left + "  " + right);
+        return (left == '(' && right == ')') || (left == '{' && right == '}') || (left == '[' && right == ']');
+    }
 
 }

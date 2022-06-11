@@ -2,21 +2,21 @@ namespace LeetCode;
 
 public class LinkedList
 {
-    public LinkedListNode? head;
+    public LinkedListNode head;
 
     public void AddtoFront(int n)
     {
-        LinkedListNode? newNode = new LinkedListNode(n);
+        LinkedListNode newNode = new LinkedListNode(n);
         newNode.next = head;
         head = newNode;
     }
 
-    public LinkedListNode? removeNode()
+    public LinkedListNode removeNode()
     {
         //remove front he front
         if (head == null) return null;
 
-        LinkedListNode? removeNode = head;
+        LinkedListNode removeNode = head;
         head = head.next;
         removeNode.next = null;
 
@@ -25,9 +25,9 @@ public class LinkedList
 
     public void reverseLikedList() {
         if(head ==  null) return;
-        LinkedListNode? temp = null;
-        LinkedListNode? next =  null;
-        LinkedListNode? current = head;
+        LinkedListNode temp = null;
+        LinkedListNode next =  null;
+        LinkedListNode current = head;
         
         while(current != null) {
             next = current.next;
@@ -39,7 +39,7 @@ public class LinkedList
 
     public void PrintList()
     {
-        LinkedListNode? current = head;
+        LinkedListNode current = head;
         Console.WriteLine("Head => ");
         while (current != null)
         {
@@ -51,8 +51,8 @@ public class LinkedList
 
     public void deleteNode(int n)
     {
-        LinkedListNode? current = head;
-        LinkedListNode? prev = null;
+        LinkedListNode current = head;
+        LinkedListNode prev = null;
         if (current != null & current.value == n)
         {
             head = current.next;
@@ -76,8 +76,8 @@ public class LinkedList
     public bool HasCycle()
     {
 
-        LinkedListNode? fast = head;
-        LinkedListNode? slow = head;
+        LinkedListNode fast = head;
+        LinkedListNode slow = head;
         while (fast != null && fast.next  != null)
         {
             slow = slow.next;

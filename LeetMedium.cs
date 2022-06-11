@@ -60,117 +60,131 @@ public class LeetMedium
         return arr;
     }
 
-     public int[] ProductExceptSelf(int[] nums) {
-        int[] res  = new int[nums.Length];
-        for(int i = 0; i < nums.Length; i++)
+    public IList<IList<string>> GroupAnagram(string[] strs)
+    {
+
+        IList<IList<string>> res = new List<IList<string>>();
+        Dictionary<string, List<string>> dict = new Dictionary<string, List<string>>();
+
+        foreach (string s in strs)
         {
-            var product = nums.Where((n,index)=> index != i).ToArray();
-
-            int p = 1;
-            if(nums[i] == 0) p = 0;
-
-            for(int j = 0; j < product.Length; j++) {
-                p = p * product[j];
-            }
-            res[i] = p;
+            Console.WriteLine("Array Str => " + s);
+            var sortedStr = String.Concat(s.OrderBy(c => c));
+            Console.WriteLine(sortedStr);
+            if (dict.ContainsKey(sortedStr)) dict[sortedStr].Add(s);
+            else dict.Add(sortedStr, new List<string>() { s });
         }
+
+        foreach (var item in dict)
+        {
+            res.Add(item.Value);
+        }
+
+        return res;
+    }
+    /*
+
+          [["8","3",".",".","7",".",".",".","."]
+         ,["6",".",".","1","9","5",".",".","."]
+         ,[".","9","8",".",".",".",".","6","."]
+         ,["8",".",".",".","6",".",".",".","3"]
+         ,["4",".",".","8",".","3",".",".","1"]
+         ,["7",".",".",".","2",".",".",".","6"]
+         ,[".","6",".",".",".",".","2","8","."]
+         ,[".",".",".","4","1","9",".",".","5"]
+         ,[".",".",".",".","8",".",".","7","9"]]
+
+    */
+    public bool IsValidSudoku(char[][] board)
+    {
+        bool col = false, row = false, grid = false;
+
+        for (int r = 0; r < board.Length; r++)
+        {
+            for (int c = 0; c < board[r].Length; c++)
+            {
+                Console.WriteLine("Row {0}", board[r][c]);
+            }
+        }
+
+
+        return col && row && grid;
+
+    }
+
+
+    public int EvalRPN(string[] tokens)
+    {
+        Stack<int> numbers = new();
+        for (int i = 0; i < tokens.Length; i++)
+        {
+            if (tokens[i] == "+")
+            {
+                int num1 = numbers.Pop();
+                int num2 = numbers.Pop();
+                numbers.Push(num1 + num2);
+
+            }
+            else if (tokens[i] == "-")
+            {
+                System.Console.WriteLine(JsonSerializer.Serialize(numbers.ToArray()));
+                int num1 = numbers.Pop();
+                int num2 = numbers.Pop();
+                numbers.Push(num1 - num2);
+            }
+            else if (tokens[i] == "*")
+            {
+                int num1 = numbers.Pop();
+                int num2 = numbers.Pop();
+                numbers.Push(num1 * num2);
+            }
+            else if (tokens[i] == "/")
+            {
+                int num1 = numbers.Pop();
+                int num2 = numbers.Pop();
+                numbers.Push(num2 / num1);
+            }
+            else
+            {
+                int num = Int32.Parse(tokens[i]);
+                numbers.Push(num);
+
+            }
+
+        }
+
+
+        return numbers.Pop();
+    }
+
+
+    public int[] ProductExceptSelf(int[] nums)
+    {
+        int[] res = new int[nums.Length];
+
         return res;
     }
 
-     public IList<IList<string>> GroupAnagram(string[] strs)
-     {
 
-          IList<IList<string>> res = new List<IList<string>>();
-          Dictionary<string, List<string>> dict = new Dictionary<string, List<string>>();
-
-          foreach (string s in strs)
-          {
-               Console.WriteLine("Array Str => " + s);
-               var sortedStr = String.Concat(s.OrderBy(c => c));
-               Console.WriteLine(sortedStr);
-               if (dict.ContainsKey(sortedStr)) dict[sortedStr].Add(s);
-               else dict.Add(sortedStr, new List<string>() { s });
-          }
-
-          foreach (var item in dict)
-          {
-               res.Add(item.Value);
-          }
-
-          return res;
-     }
-     /*
-
-           [["8","3",".",".","7",".",".",".","."]
-          ,["6",".",".","1","9","5",".",".","."]
-          ,[".","9","8",".",".",".",".","6","."]
-          ,["8",".",".",".","6",".",".",".","3"]
-          ,["4",".",".","8",".","3",".",".","1"]
-          ,["7",".",".",".","2",".",".",".","6"]
-          ,[".","6",".",".",".",".","2","8","."]
-          ,[".",".",".","4","1","9",".",".","5"]
-          ,[".",".",".",".","8",".",".","7","9"]]
-
-     */
-     public bool IsValidSudoku(char[][] board)
-     {
-          bool col = false, row = false, grid = false;
-
-          for (int r = 0; r < board.Length; r++)
-          {
-               for (int c = 0; c < board[r].Length; c++)
-               {
-                    Console.WriteLine("Row {0}", board[r][c]);
-               }
-          }
-
-
-          return col && row && grid;
-
-     }
-
-}
-
-
-public class NestedIterator
-{
-
-    IList<NestedInteger> data = new List<NestedInteger>();
-    Queue<int> myStack = new();
-
-    public NestedIterator(IList<NestedInteger> nestedList)
+    public int LongestConsecutive(int[] nums)
     {
-        foreach (var item in nestedList)
+        HashSet<int> set = new();
+        int count = 0;
+        foreach (int item in nums)
         {
-            iterator(item);
+            set.Add(item);
         }
-    }
 
-    public bool HasNext()
-    {
-        return myStack.Count > 0;
-    }
-
-    public int Next()
-    {
-        return myStack.Dequeue();
-    }
-
-    private void iterator(NestedInteger nested)
-    {
-        if (nested.IsInteger())
+        foreach (int item in set)
         {
-            myStack.Enqueue(nested.GetInteger());
-        }
-        else
-        {
-            IList<NestedInteger> nestedData = nested.GetList();
-            foreach (NestedInteger item in nestedData)
+            if (!set.Contains(item - 1))
             {
-                iterator(item);
+                int l = 0;
+                while (set.Contains(item + l)) l++;
+                count = Math.Max(count, l);
             }
-
         }
+        return count;
     }
 
 }
