@@ -62,25 +62,6 @@ public class LeetMedium
           return arr;
      }
 
-     public int[] ProductExceptSelf(int[] nums)
-     {
-          int[] res = new int[nums.Length];
-          for (int i = 0; i < nums.Length; i++)
-          {
-               var product = nums.Where((n, index) => index != i).ToArray();
-
-               int p = 1;
-               if (nums[i] == 0) p = 0;
-
-               for (int j = 0; j < product.Length; j++)
-               {
-                    p = p * product[j];
-               }
-               res[i] = p;
-          }
-          return res;
-     }
-
      public IList<IList<string>> GroupAnagram(string[] strs)
      {
 
@@ -143,7 +124,7 @@ public class LeetMedium
                {
                     int num1 = numbers.Pop();
                     int num2 = numbers.Pop();
-                    numbers.Push(num1+num2);
+                    numbers.Push(num1 + num2);
 
                }
                else if (tokens[i] == "-")
@@ -151,19 +132,19 @@ public class LeetMedium
                     System.Console.WriteLine(JsonSerializer.Serialize(numbers.ToArray()));
                     int num1 = numbers.Pop();
                     int num2 = numbers.Pop();
-                    numbers.Push(num1-num2);
+                    numbers.Push(num1 - num2);
                }
                else if (tokens[i] == "*")
                {
                     int num1 = numbers.Pop();
                     int num2 = numbers.Pop();
-                    numbers.Push(num1*num2);
+                    numbers.Push(num1 * num2);
                }
                else if (tokens[i] == "/")
                {
                     int num1 = numbers.Pop();
                     int num2 = numbers.Pop();
-                    numbers.Push(num2/num1);
+                    numbers.Push(num2 / num1);
                }
                else
                {
@@ -178,48 +159,101 @@ public class LeetMedium
           return numbers.Pop();
      }
 
-}
 
-
-public class NestedIterator
-{
-
-     IList<NestedInteger> data = new List<NestedInteger>();
-     Queue<int> myStack = new();
-
-     public NestedIterator(IList<NestedInteger> nestedList)
+     public int[] ProductExceptSelf(int[] nums)
      {
-          foreach (var item in nestedList)
+          int[] res = new int[nums.Length];
+
+          return res;
+     }
+
+
+     public int LongestConsecutive(int[] nums)
+     {
+          HashSet<int> set = new();
+          int count = 0;
+          foreach (int item in nums)
           {
-               iterator(item);
+               set.Add(item);
           }
-     }
 
-     public bool HasNext()
-     {
-          return myStack.Count > 0;
-     }
-
-     public int Next()
-     {
-          return myStack.Dequeue();
-     }
-
-     private void iterator(NestedInteger nested)
-     {
-          if (nested.IsInteger())
+          foreach (int item in set)
           {
-               myStack.Enqueue(nested.GetInteger());
-          }
-          else
-          {
-               IList<NestedInteger> nestedData = nested.GetList();
-               foreach (NestedInteger item in nestedData)
+               if (!set.Contains(item - 1))
                {
-                    iterator(item);
+                    int l = 0;
+                    while (set.Contains(item + l)) l++;
+                    count = Math.Max(count, l);
+               }
+          }
+          return count;
+     }
+
+     public int MinDeletions(string s)
+     {
+          int count = 0;
+          Dictionary<char, int> charCountDictionary = new Dictionary<char, int>();
+          HashSet<int> freq = new();
+
+          foreach (char c in s)
+          {
+               int charCount = 0;
+               if (charCountDictionary.TryGetValue(c, out charCount))
+               {
+                    charCountDictionary[c] = ++charCount;
+               }
+               else
+               {
+                    charCountDictionary.Add(c, 1);
                }
 
           }
+
+          foreach (KeyValuePair<char, int> item in charCountDictionary)
+          {
+               int val = item.Value;
+               if (!freq.Contains(val))
+                    freq.Add(val);
+               else
+               {
+                    while (val > 0 && freq.Contains(val))
+                    {
+                         val--;
+                         count++;
+                    }
+                    if (val > 0) freq.Add(val);
+               }
+          }
+
+          return count;
+     }
+
+     public static int MinDeletion(int[] nums)
+     {
+
+          if (nums.Length <= 0) return 0;
+          int count = 0;
+          int len = nums.Length;
+          List<int> list = new();
+
+          foreach (int n in nums)
+          {
+               list.Add(n);
+          }
+
+          for (int i = 0; i < list.Count - 2; i++)
+          {    
+               int index = i - count;
+               if (i > 0 && i % 2 == 0 && list[i] == list[i + 1])
+               {
+                    list.Remove(list[i + 1]);
+                    count++;
+               }
+          }
+
+          if (list.Count % 2 != 0) count++;
+
+          return count;
      }
 
 }

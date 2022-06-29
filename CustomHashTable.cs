@@ -17,14 +17,8 @@ public class CustomHashTable
      public void put(String key, int data)
      {
           int hashedKey = hashKey(key);
-          if (hashTable[hashedKey] != null)
-          {
-               Console.WriteLine("There is already a value in => " + hashedKey);
-          }
-          else
-          {
-               hashTable[hashedKey] = data;
-          }
+          hashTable[hashedKey] = data;
+          
      }
 
      public int get(String key)

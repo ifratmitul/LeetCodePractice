@@ -1,7 +1,7 @@
 namespace LeetCode;
 public class BasicProblems
 {
-     private readonly SearchAlgo? _searchAlgo;
+     private readonly SearchAlgo _searchAlgo;
 
      public BasicProblems(SearchAlgo searchAlgo)
      {
@@ -67,7 +67,7 @@ public class BasicProblems
                if (nums[i] == 0)
                {
 
-                    pos = pos == -1 ? i : Math.Min(pos, i);
+                    pos = pos == -1  ? i : Math.Min(pos, i);
                }
                else
                {
