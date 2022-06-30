@@ -17,6 +17,7 @@ string[] strArr = { "4", "3", "-" };
 // System.Console.WriteLine(DynamicProgramming.Fib(50));
 // System.Console.WriteLine(DynamicProgramming.AnotherFibDp(50));
 
-System.Console.WriteLine(LeetMedium.MinDeletion(arr));
+// System.Console.WriteLine(LeetMedium.MinDeletion(arr));
+System.Console.WriteLine(TwoPointer.IsPalindrom("A man, a plan, a canal: Panama"));
 
 
